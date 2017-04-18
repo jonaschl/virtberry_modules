@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% set active_page = "vm" %}
+{% block content %}
+
+    <div class="row">
+    {% for domain in domains %}
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            {% if domain.state == "Running" %}
+            <div class="panel panel-success">
+            {% else %}
+            <div class="panel panel-default">
+            {% endif %}
+                <div class="panel-heading">
+                    <h4 class="">{{ domain.name}}</h4>
+                </div>
+                <div class="panel-body">
+                    <div style="margin-bottom: 3%;">
+                    uuid: {{ domain.uuid}} <br>
+                    state: {{ domain.state }} <br>
+                    </div>
+                    {#Buttons#}
+                    {% if domain.state == "Running" %}
+
+                        {#Shutdown#}
+                        <a href="/vm/{{domain.uuid}}/actions/shutdown" class="btn btn-default btn-block"
+                        data-toggle="confirmation"
+                        data-btn-ok-label="Continue" data-btn-ok-icon="glyphicon glyphicon-share-alt"
+                        data-btn-ok-class="btn-success"
+                        data-btn-cancel-label="Cancel" data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+                        data-btn-cancel-class="btn-danger"
+                        data-title="Shutdown '{{ domain.name}}'" data-content="Are you sure that you want to shutdown the VM '{{ domain.name}}'?"
+                        data-singleton="true"
+                        role="button">Shutdown</a>
+
+                        {#Pause#}
+                        <a href="/vm/{{domain.uuid}}/actions/pause" class="btn btn-default btn-block"
+                        data-toggle="confirmation"
+                        data-btn-ok-label="Continue" data-btn-ok-icon="glyphicon glyphicon-share-alt"
+                        data-btn-ok-class="btn-success"
+                        data-btn-cancel-label="Cancel" data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+                        data-btn-cancel-class="btn-danger"
+                        data-title="Pause '{{ domain.name}}'" data-content="Are you sure that you want to pause the VM '{{ domain.name}}'?"
+                        data-singleton="true"
+                        role="button">Pause</a>
+
+
+                        {#Destroy#}
+                        <a href="/vm/{{domain.uuid}}/actions/destroy" class="btn btn-default btn-block"
+                        data-toggle="confirmation"
+                        data-btn-ok-label="Continue" data-btn-ok-icon="glyphicon glyphicon-share-alt"
+                        data-btn-ok-class="btn-success"
+                        data-btn-cancel-label="Cancel" data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+                        data-btn-cancel-class="btn-danger"
+                        data-title="Destroy '{{ domain.name}}'" data-content="Are you sure that you want to destroy the VM '{{ domain.name}}'?"
+                        data-singleton="true"
+                        role="button">Destroy</a>
+
+                    {% elif domain.state == "Paused" %}
+                        {#Resume#}
+                        <a href="/vm/{{domain.uuid}}/actions/resume" class="btn btn-default btn-block"
+                        data-toggle="confirmation"
+                        data-btn-ok-label="Continue" data-btn-ok-icon="glyphicon glyphicon-share-alt"
+                        data-btn-ok-class="btn-success"
+                        data-btn-cancel-label="Cancel" data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+                        data-btn-cancel-class="btn-danger"
+                        data-title="Resume '{{ domain.name}}'" data-content="Are you sure that you want to resume the VM '{{ domain.name}}'?"
+                        data-singleton="true"
+                        role="button">Resume</a>
+
+                        {#Destroy#}
+                        <a href="/vm/{{domain.uuid}}/actions/destroy" class="btn btn-default btn-block"
+                        data-toggle="confirmation"
+                        data-btn-ok-label="Continue" data-btn-ok-icon="glyphicon glyphicon-share-alt"
+                        data-btn-ok-class="btn-success"
+                        data-btn-cancel-label="Cancel" data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+                        data-btn-cancel-class="btn-danger"
+                        data-title="Destroy '{{ domain.name}}'" data-content="Are you sure that you want to destroy the VM '{{ domain.name}}'?"
+                        data-singleton="true"
+                        role="button">Destroy</a>
+
+
+
+                    {% elif domain.state == "Shutoff" %}
+                        {#Start#}
+                        <a href="/vm/{{domain.uuid}}/actions/start" class="btn btn-default btn-block"
+                        data-toggle="confirmation"
+                        data-btn-ok-label="Continue" data-btn-ok-icon="glyphicon glyphicon-share-alt"
+                        data-btn-ok-class="btn-success"
+                        data-btn-cancel-label="Cancel" data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+                        data-btn-cancel-class="btn-danger"
+                        data-title="Start '{{ domain.name}}'" data-content="Are you sure that you want to start the VM '{{ domain.name}}'?"
+                        data-singleton="true"
+                        role="button">Start</a>
+                    {% else %}
+                        No links
+                    {% endif %}
+                </div>
+            </div>
+      </div>
+    {% endfor %}
+  </div>
+
+
+{% endblock %}

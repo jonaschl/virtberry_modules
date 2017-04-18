@@ -1,0 +1,3 @@
+include virtberry_vm_basic/static/*
+include virtberry_vm_basic/templates/*
+include virtberry_vm_basic/config/sample-config.json

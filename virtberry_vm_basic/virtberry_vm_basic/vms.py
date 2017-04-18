@@ -2,6 +2,7 @@
 from flask_login import login_required
 from flask import Blueprint, render_template, abort, redirect, url_for, flash, Markup
 from jinja2 import TemplateNotFound
+import libvirt
 
 def dom_state(libvirt_state):
     if libvirt_state == libvirt.VIR_DOMAIN_NOSTATE:

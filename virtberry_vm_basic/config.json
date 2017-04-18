@@ -1,9 +1,0 @@
-{
-  "name": "virtberry_vm_basic",
-  "DisplayName": "VM Basic",
-  "license": "AGPLV3",
-  "PermissionGroup": "vm_basic",
-  "blueprints": [
-    "vms"
-  ]
-}
